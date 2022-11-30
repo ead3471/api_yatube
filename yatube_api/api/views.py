@@ -1,16 +1,8 @@
 from posts.models import Post, Group, Comment
 from rest_framework import viewsets
 from .serializers import PostSerializer, GroupSerializer, CommentSerializer
-from rest_framework.permissions import BasePermission, IsAuthenticated
-
-
-class IsOwnerOrReadOnly(BasePermission):
-    message = "Изменение чужого контента запрещено!"
-
-    def has_object_permission(self,
-                              request,
-                              view: viewsets.ModelViewSet, model):
-        return model.author == request.user
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsOwnerOrReadOnly
 
 
 class PostViewSet(viewsets.ModelViewSet):
