@@ -9,7 +9,6 @@ class IsOwnerOrReadOnly(BasePermission):
                               request,
                               view: viewsets.ModelViewSet,
                               model):
-        print(type(request))
         if request.method in SAFE_METHODS:
             return True
 
